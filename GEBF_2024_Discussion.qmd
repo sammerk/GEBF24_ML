@@ -1,0 +1,196 @@
+---
+title: 'Diskussion'
+subtitle: "<br><br>Leveraging Advanced Statistical Methods in Empirical Educational Research: Handling Missing Data and Harnessing Machine Learning Methods"
+author: '[Samuel Merk | Pädagogische Hochschule Karlsruhe | GEBF 2024]{style="font-size: .6em"}'
+format: 
+  revealjs:
+    auto-stretch: true
+    self-contained: true
+    controls: true
+    slide-number: c/t
+    logo: img/PH_logo.png
+    theme: [simple, css/custom.scss]
+    fullscreen: true
+    pdf-separate-fragments: true
+    pdfexport: true
+bibliography: references.bib
+csl: apa.csl
+editor_options: 
+  chunk_output_type: console
+lightbox: true
+---
+
+```{r hidden chunk which creates template stuff}
+#| echo: false
+
+## in terminal ########
+# quarto install extension quarto-ext/fontawesome
+# quarto install extension schochastics/academicons
+# test
+
+########################
+library(fontawesome)
+library(tidyverse)
+library(readxl)
+library(ggalt)
+library(hrbrthemes)
+library(reactable)
+
+# Change css to PH green
+if(!dir.exists("css"))
+dir.create("css")
+fileConn<-file("css/custom.scss")
+fileStyle<-file("css/custom.scss")
+writeLines(c("/*-- scss:defaults --*/",
+             "$link-color: #8cd000 !default;",
+             # line-height muss im parent der font-size gesetzt werden,
+             # daher hier und nicht inline im YAML header
+             ".reveal h1 {line-height: .8 !important;} ", 
+             # make citations a bit smaller
+             ".citation {font-size: .8em; color: #8cd000;}",
+             "div.callout-tip.callout-style-default .callout-title 
+             {background-color: #8cd00050 !important;}",
+             ".imp {color: #8cd000;}",
+             ".grey {color: #11111130;}",
+             ".imp2 {color: #50B32E;}",
+             ".cent2 h2 {text-align: center;}",
+             ".cent3 h3 {text-align: center;}",
+             ".cent1 h1 {text-align: center;}",
+             ".cent_text {text-align: center;}",
+             ".reveal h2 {color: #8cd000 !important;}"),
+           fileConn)
+close(fileConn)
+close(fileStyle)
+```
+
+## Symposium {.smaller}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## Using tree-based imputation methods in comparison to MICE for longitudinal and multilevel data
+Jakob Schwerter, Ketevan Gurtskaia, Andres Romero, Birgit Zeyer-Gliozzo, Philipp Doebler
+:::
+
+:::{.callout-note collapse=false appearance='default' icon=false}
+## Resampling-Based Approaches for Nonparametric MANOVA in the Presence of Missing Data
+Lubna Amro, Markus Pauly
+:::
+
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## Prediction Rule Ensembles: Introduction and Application with Multiple Imputation
+Philipp Doebler, Marjolein Fokkema, Vincent Schroeder, Jakob Schwerter
+:::
+
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## A Pilot Study on the Use of Transformer Models to Evaluate Open-Ended Response Formats in Educational Assessments
+Rudolf Debelak, Benjamin Wolf
+:::
+
+::: footer
+[{{< ai open-materials >}}]{.imp} Folien auf [{{< fa brands github >}}]{.imp} github verfügbar unter
+:::
+
+## Disclaimer {.smaller}
+![©️ https://bit.ly/43kY0Yl](img/science-cat.jpg){width=100%}
+
+
+
+## ~~Diskussion~~ Forum {.smaller .center}
+
+:::: {.columns}
+
+::: {.column width='60%'}
+![](img/Discus-Beitraege.png){}
+:::
+
+::: {.column width='40%'}
+* Metascientifische Kommentare
+* Rückfragen
+* Forum
+:::
+
+::::
+
+
+## Metascientifische Kommentare {.smaller}
+::: {.fragment}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## Using tree-based imputation methods in comparison to MICE for longitudinal and multilevel data [{{< ai open-access>}}]{.imp} [{{< ai open-data>}}]{.imp} [{{< ai open-materials>}}]{.grey}
+* M.E. klare Anbindung an bildungswissenschaftliche MI-Literatur erkennbar
+* Motivation aus meiner anwendungsorientierten Perspektive klar vorhanden, 
+    * insbesondere der Verzicht auf starke parametrische Annahmen und die 
+    * Robustheit gegenüber Missspezifikationen scheint mir anwendungsfreundlich
+:::
+:::
+
+::: {.fragment}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## Prediction Rule Ensembles: Introduction and Application with Multiple Imputation [{{< ai open-materials>}}]{.imp} [{{< ai open-data>}}]{.imp}  
+* PRE erscheint mir u.a. aufgrund der Balance von Predictive Power und Interpretierbarkeit attraktiv für die empirische Bildungsforschung
+* Das Problem des »Vanilla Umgangs« mit Missing Data daher Straight Forward
+:::
+:::
+
+::: {.fragment}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## A Pilot Study on the Use of Transformer Models to Evaluate Open-Ended Response Formats in Educational Assessments [{{< ai open-materials>}}]{.grey} [{{< ai open-data>}}]{.grey}  
+* Erfolg des Ansatzes würde den Trade-Off zwischen Forschungsökonomie und Informationsgehalt von offenen Antwortformaten lösen/eindämmen
+* Prädiktion der Human Ratings mit Embeddings via Lasso Regression
+:::
+:::
+
+
+## Forum {.smaller}
+::: {.fragment}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## Using tree-based imputation methods in comparison to MICE for longitudinal and multilevel data
+* "Ökologische Validität" der simulierten Szenarien
+    * Scheint per Eye Test gegeben
+    * Wie wurden sie festgelegt?
+    * Wäre eine empirische Bestimmung ~~vorteilhaft~~die Arbeit wert?
+* Eine Kernbotschaft scheint mir **»Power hui - False Positives pfui«** zu sein
+    * Gibt es Ideen zur Ursache dieses Musters?
+    * Gibt es Szenarien für die Anwendung, in der **False Positives** weniger stark zu gewichten sind als **False Negatives**
+    * Wie fällt der Vergleich zu MICE PMM aus, nachdem die Fehlertypen methodenspezifisch balanciert wurden?
+:::
+:::
+
+
+## Forum {.smaller}
+::: {.fragment}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## Prediction Rule Ensembles: Introduction and Application with Multiple Imputation
+* Wo rangiert PRE auf einem Kontinuum mit den Polen »Explanative Modellierung« »Prädiktive Modellierung«
+    * Beispiele wie PRE in der empirischen Bildungsforschung zur
+        * »Integration verschiedener Theorien« oder
+        * »Vermeidung des Übersehens von Prädiktoren« beitragen?
+* "Ökologische Validität" der simulierten Szenarien
+    * Scheint per Eye Test gegeben
+    * Wie wurden sie festgelegt?
+    * Wäre eine empirische Bestimmung ~~vorteilhaft~~die Arbeit wert?
+* Wie praktikabel sind »größere« $N$?
+* »6 rules and one linear term generate the outcome variable«
+    * Was wäre bei umgekehrtem Szenario?
+:::
+:::
+
+# Forum {.smaller}
+::: {.fragment}
+:::{.callout-tip collapse=false appearance='default' icon=false}
+## A Pilot Study on the Use of Transformer Models to Evaluate Open-Ended Response Formats in Educational Assessments
+* Kontext zu den Texten
+    * Thema
+    * Textkomplexität
+    * Texthomogenität
+* Spricht etwas gegen die Publikation der Texte?
+* Lasso Regression
+    * Wie fiel die Entscheidung dafür?
+    * Würde Vergleich mit anderer Vorgehensweise (z.B. Distanzmaße) Sinn machen?
+* Wie ähnlich sind die Ergebnisse zu verlgeichbaren Studien?
+:::
+:::
+
+
+## Literatur
+
+<style>
+div.callout-tip {border-left-color: #8cd000 !important;}
+</style>
